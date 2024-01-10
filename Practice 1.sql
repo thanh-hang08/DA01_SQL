@@ -23,3 +23,8 @@ SELECT name, population, area FROM World WHERE area >=3000000 OR population >=25
 --- Ex12
 SELECT DISTINCT author_id AS id FROM Views WHERE author_id=viewer_id ORDER BY author_id
 --- Ex13
+SELECT part, assembly_step  FROM parts_assembly WHERE finish_date is null
+--- Ex14
+select index, yearly_salary from lyft_drivers WHERE yearly_salary<=30000 or yearly_salary >=70000
+--- Ex15
+select * from lyft_drivers WHERE yearly_salary<=30000 or yearly_salary >=70000
