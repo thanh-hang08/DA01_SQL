@@ -39,4 +39,12 @@ count(id) AS number_employee
 from employees
 where extract(month FROM joining_date) between 1 and 7
 and extract(year FROM joining_date)=2022
-
+--- Ex 9
+select position ('a' in first_name) as position
+from worker
+WHERE first_name=('Amitah')
+--- Ex10
+select 
+substring (title,length(winery)+2,4)
+from winemag_p2
+WHERE country='Macedonia'
