@@ -32,7 +32,11 @@ SELECT tweet_id
 FROM Tweets
 WHERE length(content) > 15
 --- Ex 7
-
+SELECT activity_date AS day,
+count(distinct user_id) AS active_users
+FROM Activity
+WHERE activity_date between '2019-06-27' and '2019-07-27'
+group by activity_date
 --- Ex 8
 select 
 count(id) AS number_employee
