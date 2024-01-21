@@ -15,3 +15,10 @@ CASE
     END AS triangle
 FROM Triangle
 ---- Ex 3
+SELECT 
+ROUND(100*sum(CASE
+  WHEN call_category ='n/a' THEN 1
+  WHEN call_category IS null THEN 1 
+  ELSE 0
+  END)/count(*),1) AS call_percentage
+FROM callers;
