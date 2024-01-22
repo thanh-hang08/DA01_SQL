@@ -14,7 +14,7 @@ CASE
     ELSE 'No' 
     END AS triangle
 FROM Triangle
----- Ex 3
+--- Ex 3
 SELECT 
 ROUND(100*sum(CASE
   WHEN call_category ='n/a' THEN 1
@@ -22,3 +22,15 @@ ROUND(100*sum(CASE
   ELSE 0
   END)/count(*),1) AS call_percentage
 FROM callers;
+--- Ex 4
+SELECT name
+FROM Customer 
+WHERE(COALESCE (referee_id ," ")<>2)
+--- Ex 5
+SELECT   
+    survived,      
+    COUNT(CASE WHEN pclass = 1 THEN survived = 1  END) AS first_class,   
+    COUNT(CASE WHEN pclass = 2 THEN survived = 1  END) AS second_class,   
+    COUNT(CASE WHEN pclass = 3 THEN survived = 1  END) AS third_class  
+FROM titanic  
+GROUP BY survived 
