@@ -26,3 +26,24 @@ ON c.product_id=p.product_id
 GROUP BY c.customer_id
 HAVING COUNT(distinct p.product_category) = 3
 --- Ex 5
+SELECT 
+E_id.employee_id AS employee_id, E_id.name, COUNT(Rpt_to.reports_to) AS reports_count, ROUND(AVG(Rpt_to.age)) AS average_age
+FROM Employees AS E_id
+JOIN Employees AS Rpt_to
+ON E_id.employee_id=Rpt_to.reports_to
+--- Ex 6
+SELECT 
+P.product_name AS product_name, sum(O.unit) AS unit
+FROM Products AS P
+JOIN Orders AS O
+ON P.product_id=O.product_id
+WHERE order_date BETWEEN '2020-02-01' AND '2020-02-29'
+GROUP BY P.product_id
+HAVING SUM(O.unit)>=100
+--- Ex 7
+SELECT  
+P.page_id
+FROM pages AS P 
+LEFT JOIN page_likes AS P_L
+ON P.page_id=P_L.page_id
+WHERE P_L.page_id IS NULL
