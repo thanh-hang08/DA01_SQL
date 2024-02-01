@@ -36,3 +36,9 @@ FROM ranking_table
 WHERE ranking<=2
 GROUP BY category, product, total_spend, ranking
 ORDER BY category, ranking 
+--- Ex 3
+SELECT count(call) AS total FROM
+(SELECT policy_holder_id, count(case_id) AS call FROM callers
+GROUP BY policy_holder_id
+HAVING COUNT(case_id)>=3) 
+AS call_rec;
