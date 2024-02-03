@@ -42,3 +42,15 @@ SELECT count(call) AS total FROM
 GROUP BY policy_holder_id
 HAVING COUNT(case_id)>=3) 
 AS call_rec;
+--- Ex 4
+SELECT page_id FROM pages WHERE page_id NOT IN 
+(SELECT page_id
+FROM page_likes)
+--- Ex 6
+
+
+
+
+
+
+
