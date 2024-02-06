@@ -4,6 +4,7 @@ WITH job_hiring AS
 COUNT(job_id) AS job_count
 FROM job_listings
 GROUP BY company_id, title)
+
 SELECT 
 COUNT (DISTINCT company_id) 
 FROM job_hiring 
@@ -47,8 +48,34 @@ SELECT page_id FROM pages WHERE page_id NOT IN
 (SELECT page_id
 FROM page_likes)
 --- Ex 6
+WITH date AS (SELECT *, DATE_FORMAT (trans_date, '%Y-%m') AS month FROM Transactions)
 
-
+SELECT date.month, date.country,
+count(date.id) AS trans_count,
+sum(CASE WHEN date.state ='approved' THEN 1 ELSE 0 END) AS approved_count,
+sum(date.amount) AS trans_total_amount,
+sum(CASE WHEN state ='approved' THEN amount ELSE 0 END) AS approved_total_amount
+FROM date
+GROUP BY date.month, date.country
+--- Ex 7
+SELECT product_id, year as first_year, quantity,price
+FROM Sales
+WHERE (product_id,year) in 
+(SELECT product_id,MIN(year)
+FROM Sales
+GROUP BY product_id)
+--- Ex 8
+select customer_id
+from customer
+group by customer_id
+having count(distinct product_key)=(select count(product_key) from product)
+--- Ex 9 
+select employee_id from employees where salary<30000
+and manager_id not in (select employee_id
+from employees 
+group by employee_id)
+order by employee_id 
+--- Ex 10
 
 
 
