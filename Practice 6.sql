@@ -99,7 +99,14 @@ select * from
         on m.movie_id = sq.movie_id 
     order by sq.avg_rating desc, m.title limit 1) 
 as movie_query
-
-
+--- Ex 12
+with ha AS
+(select requester_id AS id from RequestAccepted
+union all 
+select accepter_id AS id from RequestAccepted)
+select id, count(id) AS num
+from ha
+group by id
+order by num DESC limit 1
 
 
