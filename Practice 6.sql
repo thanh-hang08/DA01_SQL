@@ -47,6 +47,17 @@ AS call_rec;
 SELECT page_id FROM pages WHERE page_id NOT IN 
 (SELECT page_id
 FROM page_likes)
+--- Ex 5
+with cte AS (select last.user_id, last.event_type AS last_type, 
+cur.event_type AS cur_type,
+extract(month from last.event_date) AS last_month,
+extract(month from cur.event_date) AS cur_month
+from user_actions AS last JOIN user_actions AS cur ON last.user_id=cur.user_id)
+
+select cur_month AS month, count(distinct user_id) AS monthly_active_users
+from cte 
+where last_month <> cur_month and cur_month=7
+group by month
 --- Ex 6
 WITH date AS (SELECT *, DATE_FORMAT (trans_date, '%Y-%m') AS month FROM Transactions)
 
